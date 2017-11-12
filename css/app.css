@@ -1,0 +1,28 @@
+@import "reset.css";
+
+body {
+    text-align: center;
+    background-color: #f5f5f5;
+    font-family: "Luckiest Guy", "Helvetica Neue", sans-serif;
+}
+
+.container {
+    width: 100%;
+}
+
+.game__header {
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, .095);
+    line-height: 75px;
+}
+
+h1 {
+    font-size: 50px;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #a90329  33%, #0D61BC 66%, #8AA9D6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #0B2349;
+}
+
