@@ -17,12 +17,60 @@ body {
     line-height: 75px;
 }
 
-h1 {
-    font-size: 50px;
+h1, h2 {
     text-transform: uppercase;
     background: linear-gradient(45deg, #a90329  33%, #0D61BC 66%, #8AA9D6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: #0B2349;
 }
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+.content {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.start__button {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: "Luckiest Guy", "Helvetica Neue", sans-serif;
+    padding-top: 10px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #a90329  17%, #0D61BC 73%, #8AA9D6);
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.playing__field {
+    width: 50%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+
+
+
+    /*height: 105%;*/
+    border: 1px solid red;
+}
+
+.cards {
+    width: 24%;
+    height: 140px;
+    border: 1px solid black;
+    /*margin-top: 4px;*/
+    flex: auto;
+    margin: 2px;
+}
+
 
