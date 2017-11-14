@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
+    <script src="https://unpkg.com/yallajs"></script>
     <title>Memory Pair Game</title>
 </head>
 <body>
@@ -18,27 +19,13 @@
             <h2>Start Game</h2>
             <button class="start__button" type="button">Hand over the cards</button>
             <h2>Playing field</h2>
-            <div class="playing__field">
-                <div class="cards">1</div>
-                <div class="cards">2</div>
-                <div class="cards">3</div>
-                <div class="cards">4</div>
-                <div class="cards">5</div>
-                <div class="cards">6</div>
-                <div class="cards">7</div>
-                <div class="cards">8</div>
-                <div class="cards">9</div>
-                <div class="cards">10</div>
-                <div class="cards">11</div>
-                <div class="cards">12</div>
-                <div class="cards">13</div>
-                <div class="cards">14</div>
-                <div class="cards">15</div>
-                <div class="cards">16</div>
-            </div>
+            <div class="playing__field"></div>
         </div>
+        <footer>
+            <h2 class="text__score" hidden="true" >Your steps: <span class="score"></span></h2>
+        </footer>
     </div>
-
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
     <script src="scripts/app.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 @import "reset.css";
+@import "flipping.css";
 
 body {
     text-align: center;
@@ -57,20 +58,5 @@ h2 {
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: space-around;
-
-
-
-    /*height: 105%;*/
-    border: 1px solid red;
+    border: 1px solid lightslategray;
 }
-
-.cards {
-    width: 24%;
-    height: 140px;
-    border: 1px solid black;
-    /*margin-top: 4px;*/
-    flex: auto;
-    margin: 2px;
-}
-
-
