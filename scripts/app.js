@@ -1,9 +1,14 @@
 class Game {
-    constructor(elem, count) {
+    constructor(elem, count, countCards, buttonElem) {
         this.elem = elem;
         this.steps = count;
+        this.countCards = countCards;
         this.elemSteps = document.body.querySelector('.score');
         this.elemSteps.innerHTML = 0;
+
+        this.buttonElem = buttonElem;
+        this.buttonElem.innerHTML = 'Clear and restart';
+
         this.openCards = new Set();
 
         this.flipElem = this.flipElem.bind(this);
@@ -25,6 +30,7 @@ class Game {
                         this.el.parentNode.remove();
                     }, 800);
                     this.openCards.delete(elem);
+                    this.countCards -= 2;
                 }
             });
 
@@ -34,14 +40,23 @@ class Game {
                 });
                 this.openCards.clear();
             }
+
+            if (this.countCards === 0) {
+                setTimeout(() => {
+                    alert('You Win!');
+                }, 1500);
+
+                this.buttonElem.innerHTML = 'Start the game again?';
+            }
         }
 
         this.openCards.add(this.el.parentNode);
     }
 }
 
-const initialGame = (parenElem, count) => {
-    return new Game(parenElem, count);
+const initialGame = (parenElem, count, countCards) => {
+    const buttonElem = document.querySelector('.start__button');
+    return new Game(parenElem, count, countCards, buttonElem);
 };
 
 
@@ -53,6 +68,7 @@ class BuildPlayingField {
         this.countSteps = countSteps;
         this.elemSteps = elemSteps;
         this.arrAttr = arrayAttributes;
+        this.countCards = this.arrAttr.length;
 
         this.beginGame = this.beginGame.bind(this);
         this.elem.addEventListener('click', this.beginGame);
@@ -85,7 +101,7 @@ class BuildPlayingField {
         this.fieldParent.insertAdjacentHTML(`afterBegin`, template);
         document.body.querySelector('.text__score').hidden = false;
 
-        initialGame(this.fieldParent, this.countSteps);
+        initialGame(this.fieldParent, this.countSteps, this.countCards, this.buttonElem);
     }
 
 }
@@ -120,5 +136,3 @@ const initialTask = () => {
 };
 
 initialTask();
-
-

@@ -49,6 +49,7 @@ h2 {
     background: linear-gradient(45deg, #a90329  17%, #0D61BC 73%, #8AA9D6);
     color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    width: 17vw;
 }
 
 .playing__field {
