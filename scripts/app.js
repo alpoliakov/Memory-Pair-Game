@@ -84,6 +84,7 @@ class BuildPlayingField {
         }
         this.fieldParent.insertAdjacentHTML(`afterBegin`, template);
         document.body.querySelector('.text__score').hidden = false;
+
         initialGame(this.fieldParent, this.countSteps);
     }
 
