@@ -9,6 +9,8 @@ class Game {
         this.buttonElem = buttonElem;
         this.buttonElem.innerHTML = 'Clear and restart';
 
+        this.timeCheckPoint = true;
+        this.arrRemoveCards = [];
         this.openCards = new Set();
 
         this.flipElem = this.flipElem.bind(this);
@@ -16,8 +18,14 @@ class Game {
     }
 
     flipElem(evt) {
+        evt.preventDefault();
         this.el = evt.target;
         if (!this.el.classList.contains('front')) return;
+
+        if (!this.timeCheckPoint) return;
+        this.timeCheckPoint = false;
+        setTimeout(() => this.timeCheckPoint = true, 400);
+
         this.el.parentNode.classList.toggle('flipped');
         this.steps += 1;
         this.elemSteps.innerHTML = this.steps;
@@ -25,10 +33,13 @@ class Game {
         if (this.openCards.size > 0) {
             this.openCards.forEach(elem => {
                 if (elem.dataset.name === this.el.parentNode.dataset.name) {
+                    this.arrRemoveCards.push(elem, this.el.parentNode);
+
                     setTimeout(() => {
-                        elem.remove();
-                        this.el.parentNode.remove();
-                    }, 800);
+                        this.arrRemoveCards.forEach(card => card.remove());
+                        this.arrRemoveCards = [];
+                    }, 700);
+
                     this.openCards.delete(elem);
                     this.countCards -= 2;
                 }
@@ -42,15 +53,16 @@ class Game {
             }
 
             if (this.countCards === 0) {
-                setTimeout(() => {
-                    alert('You Win!');
-                }, 1500);
+                setTimeout(() => alert('You Win!'), 1000);
+                setTimeout(() => this.elem.remove(), 1500);
 
                 this.buttonElem.innerHTML = 'Start the game again?';
             }
         }
 
-        this.openCards.add(this.el.parentNode);
+        if (this.el.parentNode.dataset.name) {
+            this.openCards.add(this.el.parentNode);
+        }
     }
 }
 
