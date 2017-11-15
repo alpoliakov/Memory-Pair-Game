@@ -10,8 +10,7 @@ class Game {
         this.buttonElem.innerHTML = 'Clear and restart';
 
         this.timeCheckPoint = true;
-        this.arrRemoveCards = [];
-        this.openCards = new Set();
+        this.arrCheckCards = [];
 
         this.flipElem = this.flipElem.bind(this);
         this.elem.addEventListener('click', this.flipElem);
@@ -24,44 +23,39 @@ class Game {
 
         if (!this.timeCheckPoint) return;
         this.timeCheckPoint = false;
-        setTimeout(() => this.timeCheckPoint = true, 400);
+        setTimeout(() => this.timeCheckPoint = true, 500);
 
         this.el.parentNode.classList.toggle('flipped');
+        this.arrCheckCards.push(this.el.parentNode);
+
         this.steps += 1;
         this.elemSteps.innerHTML = this.steps;
 
-        if (this.openCards.size > 0) {
-            this.openCards.forEach(elem => {
-                if (elem.dataset.name === this.el.parentNode.dataset.name) {
-                    this.arrRemoveCards.push(elem, this.el.parentNode);
-
-                    setTimeout(() => {
-                        this.arrRemoveCards.forEach(card => card.remove());
-                        this.arrRemoveCards = [];
-                    }, 700);
-
-                    this.openCards.delete(elem);
-                    this.countCards -= 2;
-                }
-            });
-
-            if (this.openCards.size > 1) {
-                this.openCards.forEach(elem => {
-                    elem.classList.toggle('flipped');
-                });
-                this.openCards.clear();
+        if (this.arrCheckCards.length > 1) {
+            if (this.arrCheckCards[0].dataset.name === this.arrCheckCards[1].dataset.name) {
+                this.countCards -= 2;
+                setTimeout(() => {
+                   for (let count = 0; count < 2; count += 1) {
+                       this.arrCheckCards[count].remove();
+                   }
+                   this.arrCheckCards = [];
+               }, 500)
             }
 
-            if (this.countCards === 0) {
-                setTimeout(() => alert('You Win!'), 1000);
-                setTimeout(() => this.elem.remove(), 1500);
+            if (this.arrCheckCards.length > 2) {
+                for (let count = 0; count < 2; count += 1) {
+                    this.arrCheckCards[count].classList.toggle('flipped');
+                }
 
-                this.buttonElem.innerHTML = 'Start the game again?';
+                this.arrCheckCards.splice(0, 2);
             }
         }
 
-        if (this.el.parentNode.dataset.name) {
-            this.openCards.add(this.el.parentNode);
+        if (this.countCards === 0) {
+            setTimeout(() => alert('You Win!'), 1000);
+            setTimeout(() => this.elem.remove(), 1500);
+
+            this.buttonElem.innerHTML = 'Start the game again?';
         }
     }
 }
